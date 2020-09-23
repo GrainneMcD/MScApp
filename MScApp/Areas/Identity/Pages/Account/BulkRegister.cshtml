@@ -1,0 +1,58 @@
+﻿@page
+@model MScApp.Areas.Identity.Pages.Account.BulkRegisterModel
+@{
+    if (Model.Message != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Model.Message
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+<div class="jumbotron">
+    <form enctype="multipart/form-data" method="post">
+        <div>
+            <h1 class="display-4">Bulk User Upload</h1>
+            <p class="lead">
+                Upload a file in csv format, please ensure the headings on the csv are:
+            </p>
+            <p class="lead">
+                ID, Email, Password, PhoneNumber, FirstName, LastName, Address, City, PostCode, Country
+            </p>
+            <div class="pb-2">
+                <input asp-for="@Model.UserFile" type="file">
+                <span asp-validation-for="@Model.UserFile"></span>
+            </div>
+        </div>
+        <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Upload" />
+    </form>
+</div>
+
+<div>
+    <h3>Existing Users</h3>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.AppUsers)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Email</td>
+                    <td>Detail Page?? Ability to Delete users???</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

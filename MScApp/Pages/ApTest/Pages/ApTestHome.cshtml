@@ -1,0 +1,60 @@
+﻿@page
+@model MScApp.Pages.Questions.Pages.ApTestHomeModel
+@{
+    ViewData["Title"] = "Test Home";
+}
+
+<h1>Aptitude Test</h1>
+
+<div class="jumbotron">
+    <div class="lead">
+        In this test you will be asked to complete a range of timed assessments using the online testing system Question Mark.
+        The timed assessments fall into three main categories:
+        <ul>
+            <li>Written and Verbal reasoning</li>
+            <li>Diagrammatic Reasoning</li>
+            <li>Symbolic manipulation</li>
+        </ul>
+        Each of the assessments is structured as a series of multiple choice questions.
+        These assessments have been specifically selected to measure your natural ability on tasks which have been shown to be useful indicators of a student’s potential aptitude for computer programming.
+    </div>
+</div>
+<div class="jumbotron">
+    <div class="lead">
+
+        @for (int i = 0; i < Model.Tests.Count; i++)
+        {
+            @if (!Model.Tests[i].IsDeleted)
+            {
+                <div class="pb-4">
+                    <p>The Test you are assigned to is:<strong> @Model.Tests[i].TestName - @Model.Tests[i].Date.ToString("dddd, dd MMMM yyyy") at @Model.Tests[i].Time.ToString("hh: mm tt")</strong></p>
+                    <p>
+                        You must work quickly through these questions trying to complete as many questions correctly as possible in the limited time available.
+                        When the time runs out for each timed assessment you will be able to take a short break prior to beginning the next timed assessment.
+                    </p>
+                    <p>Please wait to take the test....</p>
+
+                    @if (Model.Tests[i].IsDisabled)
+                    {
+                        <div class="text-center">
+                            <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg disabled" aria-disabled="@Model.Tests[i].IsDisabled">Start Test @Model.Tests[i].TestName</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center">
+                            @if (Model.ApTestData.CheckUserTestAttempts(User.Identity.Name, @Model.Tests[i].ID))
+                            {
+                                <a asp-page="./InvalidTestAttempt/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg">Start Test @Model.Tests[i].TestName</a>
+                            }
+                            else
+                            {
+                                <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg">Start Test @Model.Tests[i].TestName</a>
+                            }
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>

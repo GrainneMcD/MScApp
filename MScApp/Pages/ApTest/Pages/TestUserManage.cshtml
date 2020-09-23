@@ -1,0 +1,75 @@
+﻿@page "{TestID:int}"
+@model MScApp.Pages.ApTest.Pages.TestUserManageModel
+@{
+    ViewData["Title"] = "Assign Users";
+}
+@if (Model.Message != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Message
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<h3 class="p-2">Editing Users For: <strong>@Model.Test.TestName</strong></h3>
+<div class="alert alert-info">
+
+    <h5><strong>Test Date : </strong></h5> <h6>@Model.Test.Date.ToString("dddd, dd MMMM yyyy")</h6>
+    <h5><strong>Test Time : </strong></h5><h6>@Model.Test.Time.ToString("hh: mm tt")</h6>
+</div>
+
+<form method="post">
+    <input type="hidden" asp-for="@Model.Test.ID" />
+    <table asp-for="@Model.Test.AppUserTests" id="testUsers" class="table table-hover">
+
+        <thead>
+            <tr>
+                <th>App User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.AppUsers.Count; i++)
+            {
+                <tr class="@(@Model.IsUserAssignedToTest(Model.AppUsers[i].Id, Model.Test.ID) ? "selected" : "")">
+                    <td>
+                        <label>
+                            @Model.AppUsers[i].Id
+                            <input type="checkbox" class="userCheckbox" id="userCheckbox" name="userCheckboxes" value="@Model.AppUsers[i].Id" checked="@Model.IsUserAssignedToTest(Model.AppUsers[i].Id, Model.Test.ID)" />
+                        </label>
+                    </td>
+                    <td>
+
+                        @Model.AppUsers[i].FirstName @Model.AppUsers[i].LastName
+
+                    </td>
+                    <td>@Model.AppUsers[i].Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="TestList" class="btn btn-danger">Cancel</a>
+</form>
+
+<script>
+    $(document)
+        .ready(function () {
+            $('#testUsers tbody').on('click', 'tr', function () {
+                if (!$(this).hasClass('selected')) {
+                    $(this).find("#userCheckbox").prop("checked", true);
+                    $(this).addClass('selected');
+                }
+                else {
+                    $(this).find("#userCheckbox").prop("checked", false);
+                    $(this).removeClass('selected');
+                }
+            });
+        });
+</script>
+
+
+

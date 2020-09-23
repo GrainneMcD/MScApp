@@ -1,0 +1,76 @@
+﻿@page "{TestID}/{QuestionTypeID}"
+@model MScApp.Pages.Questions.Pages.ApTestModel
+@{
+    Layout = "_TestLayout";
+    ViewData["Title"] = "Test";
+    int questionCount = 1;
+}
+
+<h3>
+    @Model.TestCategoryTitle
+</h3>
+
+<div id="timer" class="timer sticky-top btn btn-danger float-right"> </div>
+
+<div class="">
+    <form id="testSection" method="post">
+        <input type="hidden" asp-for="@Model.Test" />
+        @for (int i = 0; i < Model.Questions.Count(); i++)
+        {
+            if (!Model.Questions.ElementAt(i).IsDeleted)
+            {
+                <div class="card border-primary mb-3 testAnswers">
+                    <div class="card-header">
+                        <h4 class="card-title text-center">Question @questionCount .</h4>
+                    </div>
+                    <div class="card-body">
+                        <input type="hidden" asp-for="Question.QuestionTypeID" />
+                        <input type="hidden" asp-for="Question.ID" />
+                        <h5 class="card-title">@Model.Questions.ElementAt(i).QuestionBody</h5>
+                        <input type="hidden" name="[@i].QuestionBody" asp-for="@Model.Questions.ElementAt(i).QuestionBody" />
+                    </div>
+
+                    <div class="form-check">
+                        @foreach (var answer in Model.Questions.ElementAt(i).Answers)
+                        {
+                            var groupID = "[" + i + "].AnswerBody";
+
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text answerOptions">
+
+                                        <input required type="radio" name="@groupID" value="@answer.AnswerBody" asp-for="@answer.ID" />
+                                        &nbsp;@answer.AnswerBody
+
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        }
+                        @{questionCount++;}
+                        <br />
+                    </div>
+                </div>
+                <br />
+            }
+        }
+
+        <button type="submit" class="btn btn-primary">Save</button>
+
+    </form>
+</div>
+<script>
+    var timeLimit = @Model.TimeLimitInMinutes;
+    @*var timeLimit = 1;*@
+    var $timer = $('#timer');
+
+    $timer.countdown(new Date(new Date().valueOf() + timeLimit * 60 * 1000), function (event) {
+        $(this).html(event.strftime('%M:%S'));
+    }).on('finish.countdown', function () {
+        alert('@Model.SectionTimeUpMessage');
+        document.getElementById("testSection").submit();
+    });
+
+</script>

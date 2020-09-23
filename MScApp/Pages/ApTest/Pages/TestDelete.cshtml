@@ -1,0 +1,24 @@
+﻿@page "{TestID:int?}"
+@model MScApp.Pages.ApTest.Pages.TestDeleteModel
+@{
+    ViewData["Title"] = "Delete Test";
+}
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">@Model.Message</div>
+}
+
+<h1>Delete</h1>
+
+<div class="alert alert-danger">
+    <p>Are you sure you want to delete : <b>@Model.Test.TestName </b>?</p>
+
+    <p><b>Date : </b>@Model.Test.Date.DayOfWeek - @Model.Test.Date.Day/@Model.Test.Date.Month/@Model.Test.Date.Year</p>
+    <p><b>Time : </b>@Model.Test.Time.TimeOfDay</p>
+
+</div>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes!</button>
+    <a asp-page="TestList" class="btn btn-primary">Cancel</a>
+</form>

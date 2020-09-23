@@ -1,0 +1,22 @@
+﻿<script>
+
+
+
+        var timeLimit = 
+
+        function getFinishTime() {
+            return new Date(new Date().valueOf() + timeLimit * 60 * 1000); // mins, secs, ms
+            //return new Date(new Date().valueOf() + 10 * 1000);
+        }
+
+        var $clock = $('#clock');
+
+        $clock.countdown(getFinishTime(), function (event) {
+            $(this).html(event.strftime('%H:%M:%S'));
+        }).on('finish.countdown', function() {
+            alert("Time is up - submitting results...");
+            document.getElementById("testForm").submit();
+        });
+
+
+</script>

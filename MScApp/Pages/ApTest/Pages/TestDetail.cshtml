@@ -1,0 +1,71 @@
+﻿@page "{TestID:int}"
+@model MScApp.Pages.ApTest.Pages.TestDetailModel
+@{
+    ViewData["Title"] = "Test Detail";
+}
+
+@if (Model.Message != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Message
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Test Name : @Model.Test.TestName</h2>
+    </div>
+
+    <div class="card-body">
+        <p>Date : @Model.Test.Date.ToString("dddd, dd MMMM yyyy")</p>
+        <p>Time : @Model.Test.Time.ToString("hh: mm tt")</p>
+        <p>Users Assigned : @Model.UsersAssignedToTest</p>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Question Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.QuestionsInTest.Count(); i++)
+                    {
+                        <tr>
+                            <td>
+                                @Model.QuestionsInTest[i].ID
+                            </td>
+
+                            <td>
+                                @Model.QuestionsInTest[i].QuestionBody
+                                <ul>
+                                    @foreach (var answer in Model.QuestionsInTest[i].Answers)
+                                    {
+                                        <li>
+                                            @answer.AnswerBody
+                                        </li>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                @MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(Model.QuestionsInTest[i].QuestionTypeID)
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="card-footer">
+
+    </div>
+
+    <a class="btn btn-secondary" asp-page="./TestList">All Tests</a>
+</div>

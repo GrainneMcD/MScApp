@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Log-In";
+}
+
+
+<div class="jumbotron">
+    <h3 class="display-4">Welcome</h3>
+    <p>
+        The MSc Software Development will be an intensive course requiring students to learn complex skills in a relatively short time frame.
+        The aptitude test is specifically designed to assess a person’s aptitudes in areas which are known to be important for software development.
+        The test is used to ensure that only those candidates that are most likely to succeed on this particular course are offered places.
+        The testing system calculates a candidate’s score based on both the speed and accuracy of their responses on assessments compared with the
+        norm values which have been shown to predict strong competence in software development.
+        We will only be making offers to candidates who have achieved satisfactory normalised scores in the test.
+    </p>
+</div>
+
+@if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+{
+    <div class="jumbotron text-center">
+        <div class="lead">
+            <p><strong>On first log-in please ensure your personal and contact details are correct and change your password</strong></p>
+        </div>
+        <div>
+            <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Personal Details">Details</a>
+        </div>
+    </div>
+}

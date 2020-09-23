@@ -1,0 +1,52 @@
+﻿@page
+@model MScApp.Pages.ApTest.Pages.ApTestResultsModel
+@{
+    ViewData["Title"] = "Results";
+}
+
+<form class="p-2" method="post">
+    <button type="submit" class="btn btn-primary">Download Results</button>
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Test Name</th>
+            <th>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning)</th>
+            <th>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(@MScApp.Core.QuestionTypeID.Diagrammatic_Reasoning)</th>
+            <th>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(@MScApp.Core.QuestionTypeID.Symbolic_Manipulation)</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var testAttempt in Model.TestAttempts)
+        {
+
+            if (testAttempt.IsPass)
+            {
+                <tr class="table-success">
+                    <td>@testAttempt.AppUserID</td>
+                    <td>@Model.GetTestName(testAttempt.TestID)</td>
+                    <td>@testAttempt.Section1Result.ToString("0.00")%</td>
+                    <td>@testAttempt.Section2Result.ToString("0.00")%</td>
+                    <td>@testAttempt.Section3Result.ToString("0.00")%</td>
+                    <td><strong>Pass</strong></td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-danger">
+                    <td>@testAttempt.AppUserID</td>
+                    <td>@Model.GetTestName(testAttempt.TestID)</td>
+                    <td>@testAttempt.Section1Result.ToString("0.00")%</td>
+                    <td>@testAttempt.Section2Result.ToString("0.00")%</td>
+                    <td>@testAttempt.Section3Result.ToString("0.00")%</td>
+                    <td><strong>Fail</strong></td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>

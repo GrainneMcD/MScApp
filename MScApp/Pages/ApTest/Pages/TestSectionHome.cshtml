@@ -1,0 +1,45 @@
+﻿@page "{TestID}/{QuestionTypeID}"
+@model MScApp.Pages.ApTest.Pages.TestSectionHomeModel
+@{
+    Layout = "_TestLayout";
+    ViewData["Title"] = "QuestionList";
+}
+<h1 class="text-lg-center p-2">@Model.TestCategoryTitle</h1>
+
+<div class="card">
+    <div class="card-body">
+        @if (Model.QuestionTypeID.Equals(MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning))
+        {
+            ViewData["Title"] = "Written & Verbal Reasoning";
+            <p>
+                Verbal reasoning tests assess your ability to understand and comprehend written passages.
+                They are designed to measure your verbal comprehension, reasoning and logic, all through your understanding of language.
+                Some people when reading a statement jump to conclusions or misinterpret information - this is what the test will be able to find out about you.
+            </p>
+            <p>
+                When you're ready to begin the first set of questions, click the link below:
+            </p>
+
+        }
+        else if (Model.QuestionTypeID.Equals(MScApp.Core.QuestionTypeID.Diagrammatic_Reasoning))
+        {
+            ViewData["Title"] = "Diagrammatic Reasoning";
+            <p>Diagrammatic Reasoning focuses on akjdhaifhoahfd</p>
+            <p>
+                When ready to proceed to the next set of questions, click the link below:
+            </p>
+        }
+        else if (Model.QuestionTypeID.Equals(MScApp.Core.QuestionTypeID.Symbolic_Manipulation))
+        {
+            ViewData["Title"] = "Symbolic Manipulation";
+            <p>Symbolic Manupulation evaluates your ability to ajdbiahbfiahbf</p>
+            <p>
+                When ready to proceed to the next set of questions, click the link below:
+            </p>
+        }
+
+        <div class="text-center">
+            <a asp-page="./ApTest/" asp-route-TestID="@Model.Test.ID" asp-route-QuestionTypeID="@Model.QuestionTypeID" class="btn btn-primary btn-lg">Begin Section</a>
+        </div>
+    </div>
+</div>

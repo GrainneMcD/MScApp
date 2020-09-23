@@ -1,0 +1,109 @@
+﻿@page "{TestID:int?}"
+@model MScApp.Pages.ApTest.Pages.TestEditModel
+@{
+    ViewData["Title"] = "Edit Test";
+}
+
+@if (Model.newTest)
+{
+    <h3>Create Test</h3>
+}
+else
+{
+    <h3>Editing Test : @Model.Test.TestName</h3>
+}
+
+<form method="post">
+    <input type="hidden" asp-for="Test.ID" />
+
+    <div class="form-group">
+        <label asp-for="Test.TestName"></label>
+        <input asp-for="Test.TestName" class="form-control" />
+        <span class="text-danger" asp-validation-for="Test.TestName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Test.Date"></label>
+        <input type="date" class="form-control" asp-for="Test.Date" />
+        <span class="text-danger" asp-validation-for="Test.Date"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Test.Time"></label>
+
+        <input type="time" asp-for="Test.Time" class="form-control" />
+        <span class="text-danger" asp-validation-for="Test.Time"></span>
+    </div>
+
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.Test.IsDisabled) Disabled?
+
+        </label>
+    </div>
+    <p>Users Assigned : @Model.UsersAssignedToTest</p>
+
+    <h4>Select your questions by clicking on the rows below</h4>
+
+    <input type="hidden" asp-for="@Model.Test.ID" />
+    <table asp-for="@Model.Test.QuestionTests" id="testQuestions" class="table table-hover">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question</th>
+                <th>Question Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                if (!Model.Questions[i].IsDeleted)
+                {
+                    <tr>
+                        <td>
+                            <label>
+                                @Model.Questions[i].ID
+                                <input type="checkbox" class="questionCheckbox" id="questionCheckbox" name="checkboxes" value="@Model.Questions[i].ID" checked="@Model.IsQuestionOnTest(Model.Questions[i].ID, Model.Test.ID)" />
+                            </label>
+                        </td>
+                        <td>
+
+                            @Model.Questions[i].QuestionBody
+
+                            <ul>
+                                @foreach (var answer in Model.Questions[i].Answers)
+                                {
+                                    <li>
+                                        @answer.AnswerBody
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(Model.Questions[i].QuestionTypeID)</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="TestList" class="btn btn-danger">Cancel</a>
+</form>
+
+<script>
+    $(document)
+        .ready(function () {
+            $('#testQuestions tbody').on('click', 'tr', function () {
+                if (!$(this).hasClass('selected')) {
+                    console.log('#questionCheckbox');
+                    $(this).find("#questionCheckbox").prop("checked", true);
+                    $(this).addClass('selected');
+                }
+                else {
+                    $(this).find("#questionCheckbox").prop("checked", false);
+                    $(this).removeClass('selected');
+                }
+            });
+        });
+</script>

@@ -1,0 +1,33 @@
+﻿@page "{QuestionID:int}"
+@model MScApp.Pages.Questions.DetailModel
+@{
+    ViewData["Title"] = "Question Detail";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Question Number : @Model.Question.ID</h2>
+    </div>
+
+    <div class="card-body">
+        <strong>Question :</strong> @Model.Question.QuestionBody
+        <br />
+        <br />
+
+        <strong>Answers :</strong>
+        <br />
+        @foreach (var answer in Model.Question.Answers)
+        {
+            <span><strong>o </strong>@answer.AnswerBody</span>
+            <br />
+        }
+    </div>
+
+    <div class="card-footer">
+        Question Type : @MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(Model.Question.QuestionTypeID)
+    </div>
+
+    <a class="btn btn-secondary" asp-page="./List">All Questions</a>
+
+</div>
+

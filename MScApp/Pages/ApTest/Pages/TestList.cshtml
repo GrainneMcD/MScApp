@@ -1,0 +1,39 @@
+﻿@page
+@model MScApp.Pages.ApTest.Pages.TestListModel
+@{
+    ViewData["Title"] = "Test List";
+}
+
+@foreach (var test in Model.Tests)
+{
+    if (!test.IsDeleted)
+    {
+        <div class="card m-3">
+            <div class="card-header">
+                <div class="card-title">Test Name : @test.TestName</div>
+            </div>
+            <div class="card-body">
+                <p>@test.Date.ToString("dddd, dd MMMM yyyy")</p>
+                <p>@test.Time.ToString("hh: mm tt")</p>
+                <p>Users Assigned : @Model.GetUsers(test.ID)</p>
+
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-lg" asp-page="./TestDetail" asp-route-TestID="@test.ID">
+                    <i class="material-icons md-36">zoom_in</i>
+                </a>
+                <a class="btn btn-lg" asp-page="./TestEdit" asp-route-TestID="@test.ID">
+                    <i class="material-icons md-36">create</i>
+                </a>
+                <a class="btn btn-lg" asp-page="./TestUserManage" asp-route-TestID="@test.ID" data-toggle="tooltip" data-placement="bottom" title="Manage Applicants">
+                    <i class="material-icons md-36">face</i>
+                </a>
+                <a class="btn btn-lg" asp-page="./TestDelete" asp-route-TestID="@test.ID">
+                    <i class="material-icons md-36">delete</i>
+                </a>
+            </div>
+        </div>
+    }
+}
+
+<a asp-page="./TestEdit" class="btn btn-primary"> Add New </a>

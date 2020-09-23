@@ -1,0 +1,52 @@
+﻿@page "{QuestionID:int?}"
+@model MScApp.Pages.Questions.EditModel
+@{
+    ViewData["Title"] = "Edit Question";
+}
+
+@{
+    if (!Model.newQuestion)
+    {
+        <h1>Editing : Question @Model.Question.ID</h1>
+    }
+    else
+    {
+        <h1>Adding New Question</h1>
+    }
+}
+
+<form method="post">
+    <input type="hidden" asp-for="Question.ID" />
+    <div class="form-group">
+        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionBody">Question</label>
+        <textarea asp-for="Question.QuestionBody" class="form-control"></textarea>
+        <span class="text-danger" asp-validation-for="Question.QuestionBody"></span>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 col-form-label">Answers</label>
+        @for (int i = 0; i < Model.Question.Answers.Count; i++)
+        {
+            <div class="form-group">
+                <input class="form-check-input" asp-for="Question.Answers[i].IsCorrect" />
+                <input asp-for="Question.Answers[i].AnswerBody" class="form-control" />
+                <span class="text-danger" asp-validation-for="Question.Answers[i].AnswerBody" aria-label="Correct?"></span>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionTypeID">Question Type</label>
+        <select asp-for="Question.QuestionTypeID" class="form-control" asp-items="Model.QuestionTypes">
+            <option></option>
+        </select>
+        <span class="text-danger" asp-validation-for="Question.QuestionTypeID"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="List" class="btn btn-danger">Cancel</a>
+</form>
+
+
+
+

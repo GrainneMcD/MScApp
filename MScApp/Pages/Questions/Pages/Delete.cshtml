@@ -1,0 +1,20 @@
+﻿@page "{QuestionID:int}"
+@model MScApp.Pages.Questions.DeleteModel
+@{
+    ViewData["Title"] = "Delete Question";
+}
+
+<h1>Delete</h1>
+
+<div class="alert alert-danger">
+    Are you sure you want to delete Question @Model.Question.ID ?
+    <br /><b>Question : </b>@Model.Question.QuestionBody
+    @foreach (var answer in @Model.Question.Answers)
+    {
+        <br /><b>Answer : @answer.AnswerBody</b>
+    }
+</div>
+<form method="post">
+    <button type="submit" class="btn btn-danger">Yes!</button>
+    <a asp-page="List" class="btn btn-primary">Cancel</a>
+</form>
