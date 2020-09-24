@@ -8,35 +8,51 @@ namespace MScAppTest
     public class AnswerTest
     {
         private Answer answer;
-        Question question;
-        readonly int answerID = 1;
+        Question validQuestion;
+        readonly int validAnswerID = 1;
         readonly string validAnswerBody = "Answer Body";
-        readonly string invalidAnswerBody = "";
         readonly bool correctAnswer = true;
         readonly bool incorrectAnswer = false;
-        readonly int questionID = 1;
+        readonly int validQuestionID = 1;
 
 
         [Fact]
         public void AnswerPropertiesTest()
         {
-            question = new Question() { ID = questionID };
+            validQuestion = new Question() { ID = validQuestionID };
             answer = new Answer()
             {
-                ID = answerID,
+                ID = validAnswerID,
                 AnswerBody = validAnswerBody,
-                IsCorrect = correctAnswer,
-                Question = question,
+                Question = validQuestion,
                 QuestionID = 1
             };
 
-            Assert.NotNull(answer);
             Assert.Equal(validAnswerBody, answer.AnswerBody);
-            Assert.Equal(answerID, answer.ID);
-            Assert.Equal(question, answer.Question);
+            Assert.Equal(validAnswerID, answer.ID);
             Assert.NotNull(answer.Question);
-            Assert.Equal(questionID, answer.QuestionID);
+            Assert.Equal(validQuestion, answer.Question);
+            Assert.Equal(validQuestionID, answer.QuestionID);
+
+        }
+        [Fact]
+        public void AnswerIsCorrectTrueTest()
+        {
+            answer = new Answer()
+            {
+                IsCorrect = correctAnswer
+            };
             Assert.True(answer.IsCorrect);
+        }
+
+        [Fact]
+        public void AnswerISCorrectFalseTest()
+        {
+            answer = new Answer()
+            {
+                IsCorrect = incorrectAnswer
+            };
+            Assert.False(answer.IsCorrect);
         }
 
         [Fact]
