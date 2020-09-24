@@ -23,7 +23,7 @@ namespace MScAppTest
             questionType = new QuestionType();
 
             Assert.NotNull(questionType);
-            Assert.IsType<Question>(questionType);
+            Assert.IsType<QuestionType>(questionType);
         }
 
         [Fact]
@@ -42,6 +42,12 @@ namespace MScAppTest
             Assert.Equal(questions, questionType.Questions);
             Assert.Equal(validQuestionTypeName1, questionType.QuestionTypeName);
             Assert.Equal(validQuestionType1, questionType.QuestionTypeID);
+
+            questionType.QuestionTypeName = validQuestionTypeName2;
+            Assert.Equal(validQuestionTypeName2, questionType.QuestionTypeName);
+
+            questionType.QuestionTypeName = validQuestionTypeName3;
+            Assert.Equal(validQuestionTypeName3, questionType.QuestionTypeName);
 
         }
 
