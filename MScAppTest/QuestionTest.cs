@@ -51,7 +51,7 @@ namespace MScAppTest
             Assert.Equal(questionType, question.QuestionType);
         }
         [Fact]
-        public void QuestionTypeTest()
+        public void QuestionTypeIDTest()
         {
             question = new Question() { QuestionTypeID = QuestionTypeID.Written_and_Verbal_Reasoning };
             Assert.Equal(validQuestionType1, question.QuestionTypeID);
