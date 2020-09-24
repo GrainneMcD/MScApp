@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MScApp", "MScApp\MScApp.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MScApp.Core", "MScApp.Core\MScApp.Core.csproj", "{107B9C22-63D2-4D7F-A735-57C1634A96FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MScAppTest", "MScAppTest\MScAppTest.csproj", "{5A97166C-10B1-4C09-8997-4B4CDA4A57B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{107B9C22-63D2-4D7F-A735-57C1634A96FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107B9C22-63D2-4D7F-A735-57C1634A96FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107B9C22-63D2-4D7F-A735-57C1634A96FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A97166C-10B1-4C09-8997-4B4CDA4A57B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A97166C-10B1-4C09-8997-4B4CDA4A57B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A97166C-10B1-4C09-8997-4B4CDA4A57B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A97166C-10B1-4C09-8997-4B4CDA4A57B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
