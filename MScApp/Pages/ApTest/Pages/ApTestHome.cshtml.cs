@@ -37,13 +37,5 @@ namespace MScApp.Pages.Questions.Pages
 
            
         }
-
-        public void OnPost()
-        {
-
-
-        }
-
-
     }
 }
