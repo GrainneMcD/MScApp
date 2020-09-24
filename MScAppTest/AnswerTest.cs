@@ -46,7 +46,7 @@ namespace MScAppTest
         }
 
         [Fact]
-        public void AnswerISCorrectFalseTest()
+        public void AnswerIsCorrectFalseTest()
         {
             answer = new Answer()
             {
