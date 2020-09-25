@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace MScApp.Pages.ApTest.Pages
 {
     [Authorize(Policy = "IsAdmin")]
-    public class TestUserManageModel : PageModel
+    public class TestApplicantManageModel : PageModel
     {
         readonly IApTestData apTestData;
         [BindProperty]
@@ -18,7 +18,7 @@ namespace MScApp.Pages.ApTest.Pages
 
         public string Message { get; set; }
 
-        public TestUserManageModel(IApTestData apTestData
+        public TestApplicantManageModel(IApTestData apTestData
 )
         {
             this.apTestData = apTestData;
