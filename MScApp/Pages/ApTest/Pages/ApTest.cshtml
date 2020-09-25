@@ -58,12 +58,12 @@
         }
 
         <button type="submit" class="btn btn-primary">Save</button>
-
+        
     </form>
 </div>
+
 <script>
     var timeLimit = @Model.TimeLimitInMinutes;
-    @*var timeLimit = 1;*@
     var $timer = $('#timer');
 
     $timer.countdown(new Date(new Date().valueOf() + timeLimit * 60 * 1000), function (event) {
@@ -72,5 +72,4 @@
         alert('@Model.SectionTimeUpMessage');
         document.getElementById("testSection").submit();
     });
-
 </script>
