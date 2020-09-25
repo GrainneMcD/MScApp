@@ -267,11 +267,11 @@ namespace MScApp.Pages.ApTest.Data
 
         ///-------------------------------------------------------------------------------------------------
         /// <summary>   Adds applicants to a test. </summary>
+        /// 
+        /// <param name="test">                 The test. </param>
+        /// <param name="applicantCheckboxes">  The applicants' IDs in string form. </param>
         ///
-        /// <param name="test">         The test. </param>
-        /// <param name="applicantCheckboxes">   The applicants' IDs in string form. </param>
-        ///
-        /// <returns>  The test applicants were added to. </returns>
+        /// <returns>   The test applicants were added to. </returns>
         ///-------------------------------------------------------------------------------------------------
         public Test AddApplicantsToTest(Test test, string[] applicantCheckboxes)
         {
