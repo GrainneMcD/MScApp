@@ -9,12 +9,10 @@ namespace MScApp
     {
         public MScAppDbContext db;
 
-
         public SqlQuestionData(MScAppDbContext db)
         {
             this.db = db;
         }
-
 
         public Question GetByQuestionID(int questionID)
         {
@@ -23,19 +21,16 @@ namespace MScApp
 
         }
 
-
         public int Commit()
         {
             return db.SaveChanges();
         }
-
 
         public List<Question> GetQuestionsAndAnswers(int questionID)
         {
             var AllQuestions = db.Questions.Include(q => q.Answers).ToList();
             return AllQuestions;
         }
-
 
         public Question UpdateQuestion(Question updatedQuestion)
         {
@@ -52,13 +47,11 @@ namespace MScApp
             return questioninDB;
         }
 
-
         public Question AddQuestion(Question question)
         {
             db.Questions.Add(question);
             return question;
         }
-
 
         public Question DeleteQuestion(int questionID)
         {
@@ -66,6 +59,5 @@ namespace MScApp
             question.IsDeleted = true;
             return question;
         }
-
     }
 }
