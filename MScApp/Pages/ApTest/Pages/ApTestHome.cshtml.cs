@@ -14,16 +14,16 @@ namespace MScApp.Pages.Questions.Pages
         public Test Test { get; set; }
         public List<Test> Tests { get; set; }
         public bool TestTaken { get; set; }
-            
+
         public ApTestHomeModel(IApTestData ApTestData)
         {
             this.ApTestData = ApTestData;
         }
 
-        public void OnGet(int QuestionID)
+        public void OnGet()
         {
-            Tests = ApTestData.GetTestIDForLoggedInAppUser(User.Identity.Name);
-            Questions = ApTestData.GetQuestionsAndAnswers(QuestionID);
+            Tests = ApTestData.GetTestIDForLoggedInApplicant(User.Identity.Name);
+            Questions = ApTestData.GetQuestionsAndAnswers();
 
         }
     }

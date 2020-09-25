@@ -31,7 +31,7 @@ namespace MScApp.Areas.Identity.Pages.Account
 
         public void OnGet()
         {
-            AppUsers = apTestData.GetAllUsers();
+            AppUsers = apTestData.GetAllAppUsers();
         }
 
 
@@ -82,7 +82,7 @@ namespace MScApp.Areas.Identity.Pages.Account
                           record.FirstName + " " + record.LastName));*/
 
                 }
-                apTestData.AddAppUser(usersToAdd);
+                apTestData.AddNewApplicant(usersToAdd);
                 apTestData.Commit();
 
                 foreach (var user in usersToAdd)

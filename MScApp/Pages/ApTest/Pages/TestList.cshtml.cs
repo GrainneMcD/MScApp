@@ -32,7 +32,7 @@ namespace MScApp.Pages.ApTest.Pages
 
         public int GetUsers(int TestID)
         {
-            return apTestData.GetTestUsers(TestID).Count();
+            return apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
 
         }
     }

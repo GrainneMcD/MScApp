@@ -39,7 +39,7 @@ namespace MScApp
         ///-------------------------------------------------------------------------------------------------
         /// <summary>   Commits all changes made to the db </summary>
         ///
-        ///  <returns>   An int. </returns>
+        /// <returns>   An int. </returns>
         ///-------------------------------------------------------------------------------------------------
         public int Commit()
         {

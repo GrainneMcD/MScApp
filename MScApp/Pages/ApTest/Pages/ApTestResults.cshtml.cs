@@ -30,7 +30,7 @@ namespace MScApp.Pages.ApTest.Pages
 
         public void OnGet()
         {
-            AppUsers = ApTestData.GetAllUsers();
+            AppUsers = ApTestData.GetAllAppUsers();
             Tests = ApTestData.GetTests();
             TestAttempts = ApTestData.GetTestAttempts();
 

@@ -27,20 +27,20 @@ namespace MScApp.Pages.ApTest.Pages
         public void OnGet(int? TestID)
         {
             Test = apTestData.GetTestByID(TestID);
-            AppUsers = apTestData.GetAllUsers();
+            AppUsers = apTestData.GetAllAppUsers();
         }
 
         public IActionResult OnPost(string[] userCheckboxes)
         {
-            var TestUsers = apTestData.GetTestUsers(Test.ID);
+            var TestUsers = apTestData.GetApplicantsAssignedToTestByID(Test.ID);
             if (TestUsers.Count == 0)
             {
-                apTestData.AddUsersToTest(Test, userCheckboxes);
+                apTestData.AddApplicantsToTest(Test, userCheckboxes);
                 TempData["Message"] = "Users Added to Test";
             }
             else
             {
-                apTestData.UpdateUsersOnTest(Test, userCheckboxes);
+                apTestData.UpdateApplicantsAssignedToTest(Test, userCheckboxes);
                 TempData["Message"] = "Test Users Updated";
             }
 
@@ -51,7 +51,7 @@ namespace MScApp.Pages.ApTest.Pages
 
         public bool IsUserAssignedToTest(string UserID, int TestID)
         {
-            return apTestData.IsUserAssignedToTest(UserID, TestID);
+            return apTestData.IsApplicantAssignedToTest(UserID, TestID);
         }
     }
 }

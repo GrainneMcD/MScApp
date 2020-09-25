@@ -6,12 +6,17 @@ namespace MScApp.Pages.ApTest.Data
 {
     public class InMemoryApTestData : IApTestData
     {
-        public void AddAppUser(List<AppUser> userList)
+        public Test AddApplicantsToTest(Test test, string[] applicantCheckboxes)
         {
             throw new NotImplementedException();
         }
 
-        public void AddQuestionsToTest(Test test, string[] checkboxes)
+        public void AddNewApplicant(List<AppUser> userList)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddQuestionsToTest(Test test, string[] questionCheckboxes)
         {
             throw new NotImplementedException();
         }
@@ -21,17 +26,12 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public Test AddUsersToTest(Test test, string[] checkboxes)
+        public double CalculateCorrectAnswers(List<Answer> submittedAnswers, AppUser applicant, QuestionTypeID questionTypeID, int questionCount, Test test)
         {
             throw new NotImplementedException();
         }
 
-        public double CalculateCorrectAnswers(List<Answer> submittedAnswers, AppUser appUser, QuestionTypeID questionTypeID, int questionCount, Test test)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CheckUserTestAttempts(string email, int testID)
+        public bool CheckIfApplicantHasSubmittedTestAttempt(string applicantEmail, int testID)
         {
             throw new NotImplementedException();
         }
@@ -41,17 +41,22 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public Test DeleteTest(int TestID)
+        public void DeleteTest(int TestID)
         {
             throw new NotImplementedException();
         }
 
-        public List<AppUser> GetAllUsers()
+        public List<AppUser> GetAllAppUsers()
         {
             throw new NotImplementedException();
         }
 
-        public List<Question> GetAndParseQuestions(string[] checkboxes)
+        public List<Question> GetAndParseQuestions(string[] questionCheckboxes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AppUserTest> GetApplicantsAssignedToTestByID(int? TestID)
         {
             throw new NotImplementedException();
         }
@@ -61,7 +66,7 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public List<Question> GetQuestionsAndAnswers(int questionID)
+        public List<Question> GetQuestionsAndAnswers()
         {
             throw new NotImplementedException();
         }
@@ -81,7 +86,7 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public List<Test> GetTestIDForLoggedInAppUser(string userEmail)
+        public List<Test> GetTestIDForLoggedInApplicant(string applicantEmail)
         {
             throw new NotImplementedException();
         }
@@ -96,7 +101,7 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public List<AppUserTest> GetTestUsers(int? TestID)
+        public bool IsApplicantAssignedToTest(string applicantID, int TestID)
         {
             throw new NotImplementedException();
         }
@@ -106,17 +111,17 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public bool IsUserAssignedToTest(string UserID, int TestID)
+        public void SaveAnswerAttempt(List<Answer> answers, AppUser applicant, Test test)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveAnswerAttempt(List<Answer> answers, AppUser appUser, Test test)
+        public void SaveTestResults(List<double> sectionResults, int testID, AppUser applicant)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveTestResults(List<double> sectionResults, int testID, AppUser appUser)
+        public Test UpdateApplicantsAssignedToTest(Test test, string[] applicantCheckboxes)
         {
             throw new NotImplementedException();
         }
@@ -126,12 +131,7 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
-        public Test UpdateTestQuestions(Test test, string[] checkboxes)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Test UpdateUsersOnTest(Test test, string[] checkboxes)
+        public Test UpdateTestQuestions(Test test, string[] questionCheckboxes)
         {
             throw new NotImplementedException();
         }

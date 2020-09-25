@@ -42,7 +42,7 @@ namespace MScApp.Pages.ApTest.Pages
                 QuestionsInTest.Add(questionData.GetByQuestionID(QuestionTests[i].QuestionID));
             }
 
-            UsersAssignedToTest = apTestData.GetTestUsers(TestID).Count();
+            UsersAssignedToTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
         }
     }
 }
