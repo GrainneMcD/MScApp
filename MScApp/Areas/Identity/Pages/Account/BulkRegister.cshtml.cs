@@ -48,7 +48,6 @@ namespace MScApp.Areas.Identity.Pages.Account
 
                 records = csv.GetRecords<UserUploadCargo>().ToList();
 
-
                 foreach (var record in records)
                 {
                     var appUser = new AppUser
@@ -73,14 +72,6 @@ namespace MScApp.Areas.Identity.Pages.Account
                     appUser.PasswordHash = hashedPassword;
                     appUser.SecurityStamp = Guid.NewGuid().ToString();
                     usersToAdd.Add(appUser);
-                    /*apTestData.AddAppUser(appUser);
-                    apTestData.Commit();*/
-                    //var result = _userManager.PasswordHasher.VerifyHashedPassword(appUser, hashedPassword, record.Password);
-
-                    /*  var result = _userManager.AddClaimAsync(appUser,
-                          new System.Security.Claims.Claim("FullName",
-                          record.FirstName + " " + record.LastName));*/
-
                 }
                 apTestData.AddNewApplicant(usersToAdd);
                 apTestData.Commit();
@@ -96,7 +87,6 @@ namespace MScApp.Areas.Identity.Pages.Account
             {
                 throw new ArgumentNullException(nameof(file));
             }
-
 
             RedirectToPage("BulkRegister");
             TempData["Message"] = "All applicants have been successfully created";
