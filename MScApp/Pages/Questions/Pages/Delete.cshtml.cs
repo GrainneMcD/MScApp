@@ -29,7 +29,7 @@ namespace MScApp.Pages.Questions
 
         public IActionResult OnPost(int questionID)
         {
-            Question = questionData.DeleteQuestion(questionID);
+            questionData.DeleteQuestion(questionID);
             questionData.Commit();
 
             if (Question == null)

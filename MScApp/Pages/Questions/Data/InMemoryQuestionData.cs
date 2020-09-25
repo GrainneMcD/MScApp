@@ -16,7 +16,7 @@ namespace MScApp
             return 0;
         }
 
-        public Question DeleteQuestion(int questionID)
+        public void DeleteQuestion(int questionID)
         {
             throw new NotImplementedException();
         }
@@ -26,7 +26,7 @@ namespace MScApp
             throw new NotImplementedException();
         }
 
-        public List<Question> GetQuestionsAndAnswers(int questionID)
+        public List<Question> GetQuestionsAndAnswers()
         {
             throw new NotImplementedException();
         }
