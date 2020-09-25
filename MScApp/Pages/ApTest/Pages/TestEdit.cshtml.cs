@@ -30,9 +30,9 @@ namespace MScApp.Pages.ApTest.Pages
             this.apTestData = apTestData;
         }
 
-        public IActionResult OnGet(int? TestID, int questionID)
+        public IActionResult OnGet(int? TestID)
         {
-            Questions = apTestData.GetQuestionsAndAnswers(questionID);
+            Questions = apTestData.GetQuestionsAndAnswers();
             UsersAssignedToTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
 
             if (TestID.HasValue)
