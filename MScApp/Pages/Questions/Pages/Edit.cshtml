@@ -19,7 +19,7 @@
     <input type="hidden" asp-for="Question.ID" />
     <div class="form-group">
         <label class="col-sm-2 col-form-label" asp-for="Question.QuestionBody">Question</label>
-        <textarea asp-for="Question.QuestionBody" class="form-control"></textarea>
+        <textarea required asp-for="Question.QuestionBody" class="form-control"></textarea>
         <span class="text-danger" asp-validation-for="Question.QuestionBody"></span>
     </div>
 
@@ -29,7 +29,7 @@
         {
             <div class="form-group">
                 <input class="form-check-input" asp-for="Question.Answers[i].IsCorrect" />
-                <input asp-for="Question.Answers[i].AnswerBody" class="form-control" />
+                <input required asp-for="Question.Answers[i].AnswerBody" class="form-control" />
                 <span class="text-danger" asp-validation-for="Question.Answers[i].AnswerBody" aria-label="Correct?"></span>
             </div>
         }
@@ -37,7 +37,7 @@
 
     <div class="form-group">
         <label class="col-sm-2 col-form-label" asp-for="Question.QuestionTypeID">Question Type</label>
-        <select asp-for="Question.QuestionTypeID" class="form-control" asp-items="Model.QuestionTypes">
+        <select required asp-for="Question.QuestionTypeID" class="form-control" asp-items="Model.QuestionTypes">
             <option></option>
         </select>
         <span class="text-danger" asp-validation-for="Question.QuestionTypeID"></span>

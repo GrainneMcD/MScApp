@@ -29,7 +29,7 @@ namespace MScApp.Pages.ApTest.Pages
 
         public IActionResult OnPost(int TestID)
         {
-            Test = apTestData.DeleteTest(TestID);
+            apTestData.DeleteTest(TestID);
             apTestData.Commit();
 
             Message = "Test has been deleted";

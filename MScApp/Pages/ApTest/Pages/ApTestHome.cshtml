@@ -43,7 +43,7 @@
                     else
                     {
                         <div class="text-center">
-                            @if (Model.ApTestData.CheckUserTestAttempts(User.Identity.Name, @Model.Tests[i].ID))
+                            @if (Model.ApTestData.CheckIfApplicantHasSubmittedTestAttempt(User.Identity.Name, @Model.Tests[i].ID))
                             {
                                 <a asp-page="./InvalidTestAttempt/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg">Start Test @Model.Tests[i].TestName</a>
                             }
