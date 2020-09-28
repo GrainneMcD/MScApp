@@ -19,7 +19,7 @@ namespace MScApp.Pages.ApTest.Pages
         public List<QuestionTest> QuestionTests { get; set; }
         public QuestionTest QuestionTest { get; set; }
         public List<Question> QuestionsInTest { get; set; }
-        public int UsersAssignedToTest { get; set; }
+        public int ApplicantsOnTest { get; set; }
         [TempData]
         public string Message { get; set; }
 
@@ -42,7 +42,7 @@ namespace MScApp.Pages.ApTest.Pages
                 QuestionsInTest.Add(questionData.GetByQuestionID(QuestionTests[i].QuestionID));
             }
 
-            UsersAssignedToTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
+            ApplicantsOnTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
         }
     }
 }

@@ -2,34 +2,41 @@
 @model MScApp.Pages.Questions.ListModel
 @{
     ViewData["Title"] = "Question List";
+    int questionNumber = 1;
 }
+<jumbotron class="text-center">
+    <h1 class="display-4">Questions</h1>
+    <hr class="my-4">
+    <div>
+        <a asp-page="./Edit" class="btn btn-lg btn-success"> Add New </a>
+    </div>
+</jumbotron>
 
-<h1>Questions</h1>
 
 @foreach (var question in Model.Questions)
 {
     if (!question.IsDeleted)
     {
         <div class="card m-4">
-            <div class="card-header">
-                <h3>Question @question.ID</h3>
+            <div class="card-header text-white bg-danger">
+                <h3>Question @questionNumber</h3>
             </div>
             <div class="card-body">
-                <span><strong>Question: </strong>@question.QuestionBody</span>
-                <br />
-                <span>
+                <div class="pb-3">@Html.Raw(@question.QuestionBody)</div>
+
+                <div class="pb-3">
                     <label><strong>Answers : </strong></label>
-
                     <select class="btn btn-outline-primary">
-
                         @foreach (var answer in question.Answers)
                         {
                             <option value=@answer.AnswerBody>@answer.AnswerBody</option>
                         }
                     </select>
-                </span>
-                <br />
-                <span><strong>Question Type : </strong>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(question.QuestionTypeID) </span>
+                </div>
+
+                <div class="pb-3">
+                    <strong>Question Type : </strong>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(question.QuestionTypeID)
+                </div>
             </div>
             <div class="card-footer">
                 <a class="btn btn-lg" asp-page="./Detail" asp-route-QuestionID="@question.ID">
@@ -44,11 +51,5 @@
             </div>
         </div>
     }
+    questionNumber++;
 }
-
-<a asp-page="./Edit" class="btn btn-primary"> Add New </a>
-
-<div>
-
-</div>
-
