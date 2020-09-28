@@ -139,3 +139,7 @@ tr.selected {
 .correctAnswerDetail {
     color: forestgreen;
 }
+
+.delete {
+    font-size: 28px;
+}
