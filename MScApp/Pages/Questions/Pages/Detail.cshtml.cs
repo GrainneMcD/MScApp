@@ -20,6 +20,7 @@ namespace MScApp.Pages.Questions
         public IActionResult OnGet(int questionID)
         {
             Question = QuestionData.GetByQuestionID(questionID);
+            Question.QuestionBody = Question.QuestionBody.Replace("\n", "<br>");
 
             if (Question == null)
             {
