@@ -21,20 +21,13 @@
         @if (IsAdminAuthorizationResult.Succeeded)
         {
             <li class="navLi">
-                <button class="nav-link btn btn-link text-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">
-                    Register Applicant
-                </button>
+                <button class="nav-link btn btn-link text-dark dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown">Register Applicant</button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="nav-link text-dark dropdown-item" id="register" asp-page="/Account/Register">Register Single Applicant</a>
+                    <a class="nav-link text-dark dropdown-item" id="register" asp-area="Identity" asp-page="/Account/Register">Register Single Applicant</a>
                     <a class="nav-link text-dark dropdown-item" asp-area="Identity" asp-page="/Account/BulkRegister">Bulk Register Applicants</a>
                 </div>
             </li>
-            <li class="navLi dropdown-menu">
 
-            </li>
-            <li class="navLi">
-
-            </li>
         }
         <li class="navLi">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">

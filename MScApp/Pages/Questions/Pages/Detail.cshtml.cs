@@ -10,6 +10,8 @@ namespace MScApp.Pages.Questions
     {
         private readonly IQuestionData QuestionData;
         public Question Question { get; set; }
+        [TempData]
+        public string Message { get; set; }
 
 
         public DetailModel(IQuestionData QuestionData)
@@ -20,12 +22,13 @@ namespace MScApp.Pages.Questions
         public IActionResult OnGet(int questionID)
         {
             Question = QuestionData.GetByQuestionID(questionID);
-            Question.QuestionBody = Question.QuestionBody.Replace("\n", "<br>");
 
             if (Question == null)
             {
                 return RedirectToPage("./NotFound");
             }
+
+            Question.QuestionBody = Question.QuestionBody.Replace("\n", "<br>");
             return Page();
         }
     }

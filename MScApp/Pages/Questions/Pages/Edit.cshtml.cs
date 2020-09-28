@@ -19,6 +19,8 @@ namespace MScApp.Pages.Questions
         [BindProperty]
         public Answer Answer { get; set; }
         public IEnumerable<SelectListItem> QuestionTypes { get; set; }
+        [TempData]
+        public string Message { get; set; }
 
 
         public EditModel(IQuestionData questionData, IHtmlHelper htmlHelper)
@@ -68,16 +70,16 @@ namespace MScApp.Pages.Questions
             if (Question.ID > 0)
             {
                 questionData.UpdateQuestion(Question);
-
+                TempData["Message"] = "Question has been successfully updated";
             }
             else
             {
                 questionData.AddQuestion(Question);
+                TempData["Message"] = "Question has been successfully created";
             }
 
             questionData.Commit();
 
-            TempData["Message"] = "Question Saved!";
             return RedirectToPage("./Detail", new { QuestionID = Question.ID });
         }
     }

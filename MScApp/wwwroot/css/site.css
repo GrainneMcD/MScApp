@@ -143,3 +143,12 @@ tr.selected {
 .delete {
     font-size: 28px;
 }
+
+.tableHeader {
+    background-color: #e20713;
+    color: white;
+}
+
+table.dataTable tbody tr.selected {
+    background-color: #ffffff;
+}

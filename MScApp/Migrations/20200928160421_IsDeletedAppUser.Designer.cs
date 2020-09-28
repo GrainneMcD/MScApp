@@ -4,14 +4,16 @@ using MScApp;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MScApp.Migrations
 {
     [DbContext(typeof(MScAppDbContext))]
-    partial class MScAppIdentityContextModelSnapshot : ModelSnapshot
+    [Migration("20200928160421_IsDeletedAppUser")]
+    partial class IsDeletedAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

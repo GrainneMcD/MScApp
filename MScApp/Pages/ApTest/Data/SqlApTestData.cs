@@ -499,6 +499,40 @@ namespace MScApp.Pages.ApTest.Data
             }
             return TestAlreadyTaken;
         }
+
+        public AppUser GetAppUserByID(string userID)
+        {
+            var appUser = db.Users.SingleOrDefault(u => u.Id == userID);
+            return appUser;
+        }
+
+        public void DeleteAppUser(string appUserID)
+        {
+            var appUserInDB = db.Users.SingleOrDefault(u => u.Id == appUserID);
+            appUserInDB.IsDeleted = true;
+        }
+
+        public AppUser UpdateAppUser(AppUser updatedAppUser)
+        {
+            var state = db.Entry(updatedAppUser).State;
+            var appUserInDB = db.Users.SingleOrDefault(u => u.Id == updatedAppUser.Id);
+
+            appUserInDB.FirstName = updatedAppUser.FirstName;
+            appUserInDB.LastName = updatedAppUser.LastName;
+            appUserInDB.Email = updatedAppUser.Email;
+            appUserInDB.NormalizedEmail = updatedAppUser.Email.ToUpper();
+            appUserInDB.UserName = updatedAppUser.Email;
+            appUserInDB.NormalizedUserName = updatedAppUser.Email.ToUpper();
+            appUserInDB.PhoneNumber = updatedAppUser.PhoneNumber;
+            appUserInDB.Address = updatedAppUser.Address;
+            appUserInDB.City = updatedAppUser.City;
+            appUserInDB.Country = updatedAppUser.Country;
+            appUserInDB.PostCode = updatedAppUser.PostCode;
+
+            state = EntityState.Modified;
+            return appUserInDB;
+
+        }
     }
 }
 

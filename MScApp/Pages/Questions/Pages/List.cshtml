@@ -4,6 +4,16 @@
     ViewData["Title"] = "Question List";
     int questionNumber = 1;
 }
+@if (Model.Message != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @Model.Message
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <jumbotron class="text-center">
     <h1 class="display-4">Questions</h1>
     <hr class="my-4">
@@ -39,13 +49,13 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a class="btn btn-lg" asp-page="./Detail" asp-route-QuestionID="@question.ID">
+                <a class="btn btn-lg" asp-page="./Detail" asp-route-QuestionID="@question.ID"data-toggle="tooltip" data-placement="bottom" title="Question Details">
                     <i class="material-icons md-36">zoom_in</i>
                 </a>
-                <a class="btn btn-lg" asp-page="./Edit" asp-route-QuestionID="@question.ID">
+                <a class="btn btn-lg" asp-page="./Edit" asp-route-QuestionID="@question.ID" data-toggle="tooltip" data-placement="bottom" title="Edit Question">
                     <i class="material-icons md-36">create</i>
                 </a>
-                <a class="btn btn-lg" asp-page="./Delete" asp-route-QuestionID="@question.ID">
+                <a class="btn btn-lg" asp-page="./Delete" asp-route-QuestionID="@question.ID" data-toggle="tooltip" data-placement="bottom" title="Delete Question">
                     <i class="material-icons md-36">delete</i>
                 </a>
             </div>

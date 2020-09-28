@@ -4,11 +4,19 @@
     ViewData["Title"] = "Results";
 }
 
-<form class="p-2" method="post">
-    <button type="submit" class="btn btn-primary">Download Results</button>
-</form>
+<div class="jumbotron">
+    <h1 class="display-4">Applicants' Results</h1>
+    <hr class="my-4" />
+    <p class="lead">Here is a table of all results</p>
+    <hr />
+    <form class="p-2" method="post">
+        <button type="submit" class="btn btn-success">Download Results</button>
+    </form>
 
-<table class="table table-hover">
+</div>
+
+
+<table class="table table-hover" id="resultsTable">
     <thead>
         <tr>
             <th>ID</th>
@@ -50,3 +58,9 @@
 
     </tbody>
 </table>
+
+<script>
+    $(document).ready(function () {
+        $('#resultsTable').DataTable();
+    });
+</script>

@@ -1,0 +1,114 @@
+﻿@page "{UserID}"
+@model MScApp.Areas.Identity.Pages.Account.AppUserDetailModel
+@{
+    var userRole = "";
+    if (Model.AppUser.IsAdmin)
+    {
+        ViewData["Title"] = "Admin Details";
+        userRole = "Admin";
+    }
+    else
+    {
+        ViewData["Title"] = "Applicant Details";
+        userRole = "Applicant";
+    }
+    if (Model.Message != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @Model.Message
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+}
+
+<div class="card">
+    <div class="card-header text-center text-white bg-danger">
+        <h2 class="card-title">@userRole Details</h2>
+    </div>
+    <div class="card-body">
+        <div class="form-row pb-2">
+            <div class="col">
+                <h4 class="col-form-label">AppUserID:</h4>
+                <input readonly class="form-control" asp-for="@Model.AppUser.Id" />
+            </div>
+            <div class=" col">
+                <h4>Role:</h4>
+                <input readonly class="form-control" placeholder="@userRole" />
+            </div>
+        </div>
+        <form method="post">
+            <input hidden asp-for="@Model.AppUser.Id" />
+            <div class="form-row pb-2">
+                <div class="col">
+                    <h4>First Name:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.FirstName" />
+                </div>
+                <div class="col">
+                    <h4>Last Name: </h4>
+                    <input class="form-control" asp-for="@Model.AppUser.LastName" />
+                </div>
+            </div>
+            <div class="form-row pb-2">
+                <div class="col">
+                    <h4>Email Address:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.Email" />
+                </div>
+                <div class="col">
+                    <h4>Phone Number:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.PhoneNumber" />
+                </div>
+            </div>
+            <div class="form-row pb-2">
+                <div class="col">
+                    <h4>Address:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.Address" />
+                </div>
+                <div class="col">
+                    <h4>PostCode:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.PostCode" />
+                </div>
+            </div>
+            <div class="form-row pb-2">
+                <div class="col">
+                    <h4>City:</h4>
+                    <input class="form-control" asp-for="@Model.AppUser.City" />
+                </div>
+                <div class="col">
+                    <h4>Country:</h4>
+                    <select asp-for="@Model.AppUser.Country" class="form-control">
+                        <partial name="_CountryListPartial" />
+                    </select>
+                </div>
+            </div>
+
+            <a class="btn btn-lg btn-secondary float-left mt-1" asp-page="BulkRegister">Cancel</a>
+            <button type="submit" class="btn btn-lg btn-success float-right mt-1">
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="jumbotron mt-2">
+    @if (!Model.AppUser.IsAdmin)
+    {
+        <h3 class="text-center">Tests Applicant is assigned to: </h3>
+        <hr />
+        @foreach (var test in Model.TestsApplicantIsAssignedTo)
+        {
+            if (!test.IsDeleted)
+            {
+                <ul>
+                    <li><strong>Test Name: </strong>@test.TestName</li>
+                    <li><strong>Test Date: </strong>@test.Date.ToString("dddd, dd MMMM yyyy")</li>
+                    <li><strong>Test Time: </strong>@test.Time.ToString("hh: mm tt")</li>
+                </ul>
+
+            }
+        }
+
+    }
+
+</div>

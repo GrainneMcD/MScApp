@@ -11,6 +11,9 @@ namespace MScApp.Pages.ApTest.Data
         List<Question> GetQuestionsAndAnswers();
         List<Question> GetQuestionsByQuestionTypeID(QuestionTypeID questionTypeID);
         void SaveAnswerAttempt(List<Answer> answers, AppUser applicant, Test test);
+        AppUser GetAppUserByID(string userID);
+        void DeleteAppUser(string appUserID);
+        AppUser UpdateAppUser(AppUser updatedAppUser);
         double CalculateCorrectAnswers(List<Answer> submittedAnswers, AppUser applicant, QuestionTypeID questionTypeID, int questionCount, Test test);
         List<Test> GetTests();
         Test GetTestByID(int? testID);

@@ -37,12 +37,17 @@ namespace MScApp.Pages.ApTest.Pages
             Test = apTestData.GetTestByID(TestID);
             QuestionTests = apTestData.GetTestQuestions(TestID);
 
+
             for (int i = 0; i < QuestionTests.Count(); i++)
             {
                 QuestionsInTest.Add(questionData.GetByQuestionID(QuestionTests[i].QuestionID));
             }
 
+            foreach (var q in QuestionsInTest)
+            { q.QuestionBody = q.QuestionBody.Replace("\n", "<br>"); }
+
             ApplicantsOnTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
+
         }
     }
 }

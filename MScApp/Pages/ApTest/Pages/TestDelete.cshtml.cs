@@ -32,7 +32,7 @@ namespace MScApp.Pages.ApTest.Pages
             apTestData.DeleteTest(TestID);
             apTestData.Commit();
 
-            Message = "Test has been deleted";
+            TempData["Message"] = "Test has successfully been deleted";
             return RedirectToPage("./TestList");
         }
     }

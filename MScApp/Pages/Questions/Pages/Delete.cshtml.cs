@@ -32,12 +32,8 @@ namespace MScApp.Pages.Questions
         {
             questionData.DeleteQuestion(questionID);
             questionData.Commit();
+            TempData["Message"] = "Question has successfully been deleted";
 
-            if (Question == null)
-            {
-                return RedirectToPage("./NotFound");
-            }
-            TempData["Message"] = $"Question Number :{Question.ID} deleted";
             return RedirectToPage("./List");
         }
     }

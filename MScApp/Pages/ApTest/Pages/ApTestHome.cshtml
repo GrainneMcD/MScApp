@@ -4,9 +4,11 @@
     ViewData["Title"] = "Test Home";
 }
 
-<h1>Aptitude Test</h1>
+
 
 <div class="jumbotron">
+    <h1 class="text-center">Aptitude Test</h1>
+    <hr />
     <div class="lead">
         In this test you will be asked to complete a range of timed assessments using the online testing system Question Mark.
         The timed assessments fall into three main categories:
@@ -37,7 +39,7 @@
                     @if (Model.Tests[i].IsDisabled)
                     {
                         <div class="text-center">
-                            <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg disabled" aria-disabled="@Model.Tests[i].IsDisabled">Start Test @Model.Tests[i].TestName</a>
+                            <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-success btn-lg disabled" aria-disabled="@Model.Tests[i].IsDisabled">Start Test @Model.Tests[i].TestName</a>
                         </div>
                     }
                     else
@@ -45,11 +47,11 @@
                         <div class="text-center">
                             @if (Model.ApTestData.CheckIfApplicantHasSubmittedTestAttempt(User.Identity.Name, @Model.Tests[i].ID))
                             {
-                                <a asp-page="./InvalidTestAttempt/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg">Start Test @Model.Tests[i].TestName</a>
+                                <a asp-page="./InvalidTestAttempt/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-success btn-lg">Start Test @Model.Tests[i].TestName</a>
                             }
                             else
                             {
-                                <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-primary btn-lg">Start Test @Model.Tests[i].TestName</a>
+                                <a asp-page="./TestSectionHome/" asp-route-TestID="@Model.Tests[i].ID" asp-route-QuestionTypeID="@MScApp.Core.QuestionTypeID.Written_and_Verbal_Reasoning" class="btn btn-success btn-lg">Start Test @Model.Tests[i].TestName</a>
                             }
                         </div>
                     }

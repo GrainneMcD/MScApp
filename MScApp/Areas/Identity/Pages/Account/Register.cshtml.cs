@@ -50,32 +50,43 @@ namespace MScApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(10, ErrorMessage = "The {0} must be at least {0} and at max {0} characters long.", MinimumLength = 6)]
+            [DataType(DataType.Text)]
+            [StringLength(10, ErrorMessage = "The UserID must be at least 6 and at max 10 characters long.", MinimumLength = 6)]
             [Display(Name = "User ID")]
             public string UserID { get; set; }
 
             [Required]
             [EmailAddress]
+            [DataType(DataType.EmailAddress)]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [StringLength(15, ErrorMessage = "The First Name must be at least 3 and at max 15 characters long.", MinimumLength = 3)]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [StringLength(20, ErrorMessage = "The Last Name must be at least 3 and at max 20 characters long.", MinimumLength = 3)]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
             [Required]
+            [DataType(DataType.PhoneNumber, ErrorMessage = "Please enter a phone number in mobile format")]
             [Display(Name = "Phone Number - Mobile Preferred")]
             public string PhoneNumber { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [StringLength(30, ErrorMessage = "The Address must be at least 5 and at max 30 characters long.", MinimumLength = 5)]
             [Display(Name = "Address E.G 123 Main Street")]
             public string Address { get; set; }
 
             [Required]
+            [DataType(DataType.Text)]
+            [StringLength(15, ErrorMessage = "The City must be at least 5 and at max 15 characters long.", MinimumLength = 5)]
             [Display(Name = "City")]
             public string City { get; set; }
 
@@ -89,7 +100,7 @@ namespace MScApp.Areas.Identity.Pages.Account
             public string PostCode { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(50, ErrorMessage = "The Password must be at least 6 and at max 50 characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }

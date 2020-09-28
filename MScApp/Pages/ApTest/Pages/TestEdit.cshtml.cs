@@ -59,7 +59,7 @@ namespace MScApp.Pages.ApTest.Pages
             {
                 apTestData.UpdateTest(Test);
                 apTestData.UpdateTestQuestions(Test, checkboxes);
-                TempData["Message"] = "Test has been created";
+                TempData["Message"] = "Test has been updated";
             }
             else
             {
@@ -67,7 +67,7 @@ namespace MScApp.Pages.ApTest.Pages
                 apTestData.Commit();
 
                 apTestData.AddQuestionsToTest(CreatedTest, checkboxes);
-                TempData["Message"] = "Test has been updated";
+                TempData["Message"] = "Test has been created";
             }
 
             apTestData.Commit();

@@ -26,33 +26,63 @@
                 <span asp-validation-for="@Model.UserFile"></span>
             </div>
         </div>
-        <input asp-page-handler="Upload" class="btn btn-primary" type="submit" value="Upload" />
+        <input asp-page-handler="Upload" class="btn btn-success" type="submit" value="Upload" />
     </form>
 </div>
 
 <div>
-    <h3>Existing Users</h3>
-    <table class="table table-hover">
-        <thead>
+    <h3>Existing AppUsers</h3>
+    <table id="appUsersTable" class="table table-sm">
+        <thead class="tableHeader">
             <tr>
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Role</th>
+                <th class="text-center">Manage AppUser</th>
+                <th class="text-center">Delete AppUser</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var user in Model.AppUsers)
             {
-                <tr>
-                    <td>@user.Id</td>
-                    <td>@user.FirstName</td>
-                    <td>@user.LastName</td>
-                    <td>@user.Email</td>
-                    <td>Detail Page?? Ability to Delete users???</td>
-                </tr>
+                if (!user.IsDeleted)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.FirstName</td>
+                        <td>@user.LastName</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @if (user.IsAdmin)
+                            {
+                                <p>Admin</p>
+                            }
+                            else
+                            {
+                                <p>Applicant</p>
+                            }
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-lg" asp-page="./AppUserDetail" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Edit AppUser">
+                                <i class="material-icons md-36">zoom_in</i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a class="btn btn-lg" asp-page="./AppUserDelete" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Delete AppUser">
+                                <i class="material-icons md-36">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                }
             }
-
         </tbody>
     </table>
 </div>
+<script>
+    $(document)
+        .ready(function () {
+            $('#appUsersTable').DataTable();
+        });
+</script>

@@ -17,7 +17,8 @@ namespace MScApp.Pages.ApTest.Pages
         public int UsersAssignedToTest { get; private set; }
         [BindProperty]
         public Test Test { get; set; }
-
+        [TempData]
+        public string Message { get; set; }
 
         public TestListModel(IApTestData apTestData)
         {

@@ -1,7 +1,7 @@
 ﻿@page "{TestID:int}"
 @model MScApp.Pages.ApTest.Pages.TestApplicantManageModel
 @{
-    ViewData["Title"] = "Assign Users";
+    ViewData["Title"] = "Manage Applicants";
 }
 @if (Model.Message != null)
 {
@@ -12,26 +12,27 @@
         </button>
     </div>
 }
-
-<h3 class="p-2">Editing Users For: <strong>@Model.Test.TestName</strong></h3>
-<div class="alert alert-info">
-
-    <h5><strong>Test Date : </strong></h5> <h6>@Model.Test.Date.ToString("dddd, dd MMMM yyyy")</h6>
-    <h5><strong>Test Time : </strong></h5><h6>@Model.Test.Time.ToString("hh: mm tt")</h6>
+<div class="jumbotron p-4">
+    <h2>Managing Applicants for Test: <strong>@Model.Test.TestName</strong></h2>
+    <hr />
+    <div>
+        <h5><strong>Test Date:</strong></h5><p>@Model.Test.Date.ToString("dddd, dd MMMM yyyy")</p>
+        <h5><strong>Test Time:</strong></h5><p>@Model.Test.Time.ToString("hh: mm tt")</p>
+    </div>
 </div>
 
 <form method="post">
     <input type="hidden" asp-for="@Model.Test.ID" />
-    <table asp-for="@Model.Test.AppUserTests" id="testApps" class="table table-hover">
+    <table asp-for="@Model.Test.AppUserTests" id="testApps" class="table table-sm">
 
-        <thead>
+        <thead class="tableHeader">
             <tr>
                 <th>App User ID</th>
                 <th>Name</th>
                 <th>Email</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="bg-white">
             @for (int i = 0; i < Model.Applicants.Count; i++)
             {
                 if (!Model.Applicants[i].IsAdmin)
@@ -52,11 +53,15 @@
             }
         </tbody>
     </table>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success">Save</button>
     <a asp-page="TestList" class="btn btn-danger">Cancel</a>
 </form>
 
 <script>
+    $(document)
+        .ready(function () {
+            $('#testApps').DataTable();
+        });
     $(document)
         .ready(function () {
             $('#testApps tbody').on('click', 'tr', function () {

@@ -22,13 +22,13 @@ namespace MScApp.Core
         public string Country { get; set; }
 
         public bool IsAdmin { get; set; }
-
+        public bool IsDeleted { get; set; }
         public IList<AppUserTest> AppUserTests { get; set; }
 
         public AppUser()
         {
             EmailConfirmed = true;
-            
+            IsDeleted = false;
         }
     }
 }

@@ -41,6 +41,16 @@ namespace MScApp.Pages.ApTest.Data
             throw new NotImplementedException();
         }
 
+        public void DeleteAppUser(AppUser appUser)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteAppUser(string appUserID)
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteTest(int TestID)
         {
             throw new NotImplementedException();
@@ -57,6 +67,11 @@ namespace MScApp.Pages.ApTest.Data
         }
 
         public List<AppUserTest> GetApplicantsAssignedToTestByID(int? TestID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppUser GetAppUserByID(string userID)
         {
             throw new NotImplementedException();
         }
@@ -122,6 +137,11 @@ namespace MScApp.Pages.ApTest.Data
         }
 
         public Test UpdateApplicantsAssignedToTest(Test test, string[] applicantCheckboxes)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AppUser UpdateAppUser(AppUser updatedAppUser)
         {
             throw new NotImplementedException();
         }

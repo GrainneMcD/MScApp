@@ -20,6 +20,7 @@ namespace MScApp.Areas.Identity.Pages.Account
 
         [BindProperty]
         public IFormFile UserFile { get; set; }
+        [TempData]
         public string Message { get; set; }
         public List<AppUser> AppUsers { get; set; }
 
