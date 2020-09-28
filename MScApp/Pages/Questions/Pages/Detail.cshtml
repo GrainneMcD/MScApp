@@ -28,19 +28,23 @@
             <br />
             @foreach (var answer in Model.Question.Answers)
             {
-                <div class="pb-1">
+                <ul>
                     @if (answer.IsCorrect)
                     {
-                        <div class="correctAnswerDetail">
-                            <strong>o </strong> @answer.AnswerBody <i class="material-icons md-36">done_outline</i>
-                        </div>
+                        <li class="correctAnswerDetail">
+                            <p>
+                                @answer.AnswerBody
+                                <i class="material-icons md-36">done_outline</i>
+                            </p>
+                        </li>
                     }
                     else
                     {
-                        <span><strong>o </strong>@answer.AnswerBody</span>
-                        <br />
+                        <li>
+                            <p>@answer.AnswerBody</p>
+                        </li>
                     }
-                </div>
+                </ul>
             }
         </div>
     </div>
