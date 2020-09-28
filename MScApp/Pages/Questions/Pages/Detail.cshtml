@@ -10,24 +10,46 @@
     </div>
 
     <div class="card-body">
-        <strong>Question :</strong> @Model.Question.QuestionBody
-        <br />
-        <br />
+        <div class="pb-1">
 
-        <strong>Answers :</strong>
-        <br />
-        @foreach (var answer in Model.Question.Answers)
-        {
-            <span><strong>o </strong>@answer.AnswerBody</span>
+            <h5 class="m-0">
+                Question :
+            </h5>
             <br />
-        }
+            @Html.Raw(Model.Question.QuestionBody)
+        </div>
+        <hr />
+        <div>
+
+            <h5 class="m-0">
+                Answers :
+            </h5>
+
+            <br />
+            @foreach (var answer in Model.Question.Answers)
+            {
+                <div class="pb-1">
+                    @if (answer.IsCorrect)
+                    {
+                        <div class="correctAnswerDetail">
+                            <strong>o </strong> @answer.AnswerBody <i class="material-icons md-36">done_outline</i>
+                        </div>
+                    }
+                    else
+                    {
+                        <span><strong>o </strong>@answer.AnswerBody</span>
+                        <br />
+                    }
+                </div>
+            }
+        </div>
     </div>
 
     <div class="card-footer">
-        Question Type : @MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(Model.Question.QuestionTypeID)
+        <strong>Question Type : </strong>@MScApp.Core.QuestionTypeHelper.GetTestCategoryTitle(Model.Question.QuestionTypeID)
     </div>
 
-    <a class="btn btn-secondary" asp-page="./List">All Questions</a>
+    <a class="btn btn-success" asp-page="./List">All Questions</a>
 
 </div>
 
