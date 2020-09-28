@@ -19,6 +19,10 @@ namespace MScApp.Pages.Questions
         public void OnGet()
         {
             Questions = QuestionData.GetQuestionsAndAnswers();
+            foreach (var q in Questions)
+            {
+                q.QuestionBody = q.QuestionBody.Replace("\n", "<br>");
+            }
         }
     }
 }
