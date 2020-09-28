@@ -135,3 +135,7 @@ tr.selected {
 .questionBodyInTest {
     width: 80%;
 }
+
+.correctAnswerDetail {
+    color: forestgreen;
+}
