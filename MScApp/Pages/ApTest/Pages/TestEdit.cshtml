@@ -4,34 +4,45 @@
     ViewData["Title"] = "Edit Test";
 }
 
-@if (Model.newTest)
-{
-    <h3>Create Test</h3>
-}
-else
-{
-    <h3>Editing Test : @Model.Test.TestName</h3>
-}
+
+
+<div class="jumbotron text-center">
+    @if (Model.newTest)
+    {
+        <h1 class="text-center">Adding New Test</h1>
+        <hr class="my-4">
+        <div>
+            When creating a new test please ensure the test name is entered and a date and time are selected.
+            <br />
+            Tests should stay disabled until 10 minutes before test time.
+        </div>
+    }
+    else
+    {
+        <h1>Editing Test : @Model.Test.TestName</h1>
+        <div>Tests should stay disabled until 10 minutes before test time.</div>
+    }
+
+</div>
 
 <form method="post">
     <input type="hidden" asp-for="Test.ID" />
 
     <div class="form-group">
         <label asp-for="Test.TestName"></label>
-        <input asp-for="Test.TestName" class="form-control" />
+        <input required asp-for="Test.TestName" class="form-control" />
         <span class="text-danger" asp-validation-for="Test.TestName"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Test.Date"></label>
-        <input type="date" class="form-control" asp-for="Test.Date" />
+        <input required type="date" class="form-control" asp-for="Test.Date" />
         <span class="text-danger" asp-validation-for="Test.Date"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Test.Time"></label>
-
-        <input type="time" asp-for="Test.Time" class="form-control" />
+        <input required type="time" asp-for="Test.Time" class="form-control" />
         <span class="text-danger" asp-validation-for="Test.Time"></span>
     </div>
 
