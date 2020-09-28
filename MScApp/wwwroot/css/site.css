@@ -123,3 +123,15 @@ tr.selected {
 .testAnswers {
     width: 1000px;
 }
+
+.correctAnswer {
+    text-align: center;
+}
+
+.answerInput {
+    width: 90%
+}
+
+.questionBodyInTest {
+    width: 80%;
+}
