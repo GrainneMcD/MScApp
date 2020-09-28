@@ -10,7 +10,6 @@ namespace MScApp.Pages.Questions.Pages
 {
     public class ApTestModel : PageModel
     {
-        private readonly IConfiguration config;
         public IApTestData ApTestData { get; set; }
 
         [BindProperty]
@@ -33,9 +32,8 @@ namespace MScApp.Pages.Questions.Pages
         public List<double> Results { get; set; }
 
 
-        public ApTestModel(IConfiguration config, IApTestData ApTestData)
+        public ApTestModel(IApTestData ApTestData)
         {
-            this.config = config;
             this.ApTestData = ApTestData;
         }
 
