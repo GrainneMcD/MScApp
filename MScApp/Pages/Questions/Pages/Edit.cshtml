@@ -4,49 +4,76 @@
     ViewData["Title"] = "Edit Question";
 }
 
-@{
-    if (!Model.newQuestion)
+<div class="jumbotron text-center">
+    @if (!Model.newQuestion)
     {
-        <h1>Editing : Question @Model.Question.ID</h1>
+        <h1 class="text-center">Editing : Question @Model.Question.ID</h1>
     }
     else
     {
-        <h1>Adding New Question</h1>
+        <h1 class="text-center">Adding New Question</h1>
+        <hr class="my-4">
+        <div>
+            When creating a new question please ensure the question input box and all 4 answer fields are completed.
+            At least one answer must be marked as correct and a question type must be selected from the dropdown.
+        </div>
     }
-}
+
+</div>
 
 <form method="post">
     <input type="hidden" asp-for="Question.ID" />
     <div class="form-group">
-        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionBody">Question</label>
-        <textarea required asp-for="Question.QuestionBody" class="form-control"></textarea>
+        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionBody"><strong>Question</strong></label>
+        <textarea required asp-for="Question.QuestionBody" class="form-control" id="questionBody"></textarea>
         <span class="text-danger" asp-validation-for="Question.QuestionBody"></span>
     </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="pl-3">Answers</th>
+                <th class="text-center">
+                    Correct Answer
+                </th>
+            </tr>
+        </thead>
+        <tbody class="form-group">
+            @for (int i = 0; i < Model.Question.Answers.Count; i++)
+            {
+                <tr>
+                    <td class="answerInput pb-1">
+                        <input required asp-for="Question.Answers[i].AnswerBody" class="form-control" />
+                        <span class="text-danger" asp-validation-for="Question.Answers[i].AnswerBody" aria-label="Correct?"></span>
+                    </td>
+                    <td class="correctAnswer">
+                        <input type="checkbox" class="correctAnswerCheckbox" asp-for="Question.Answers[i].IsCorrect" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-    <div class="form-group">
-        <label class="col-sm-2 col-form-label">Answers</label>
-        @for (int i = 0; i < Model.Question.Answers.Count; i++)
-        {
-            <div class="form-group">
-                <input class="form-check-input" asp-for="Question.Answers[i].IsCorrect" />
-                <input required asp-for="Question.Answers[i].AnswerBody" class="form-control" />
-                <span class="text-danger" asp-validation-for="Question.Answers[i].AnswerBody" aria-label="Correct?"></span>
-            </div>
-        }
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionTypeID">Question Type</label>
+    <div class="form-group pt-3">
+        <label class="col-sm-2 col-form-label" asp-for="Question.QuestionTypeID"><strong>Question Type</strong></label>
         <select required asp-for="Question.QuestionTypeID" class="form-control" asp-items="Model.QuestionTypes">
             <option></option>
         </select>
         <span class="text-danger" asp-validation-for="Question.QuestionTypeID"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success">Save</button>
     <a asp-page="List" class="btn btn-danger">Cancel</a>
 </form>
 
 
+<!--Script to set the size for the question body input-->
+<script>
+    function questionBodyTextArea(id) {
+        id.each(function (index, element) {
+            element.style.height = element.scrollHeight + 'px';
+        });
+    }
+    questionBodyTextArea($('#questionBody'));
+</script>
 
 
