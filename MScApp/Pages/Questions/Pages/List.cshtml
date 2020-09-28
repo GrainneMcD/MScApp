@@ -26,10 +26,10 @@
 
                 <div class="pb-3">
                     <label><strong>Answers : </strong></label>
-                    <select class="btn btn-outline-primary">
+                    <select class="custom-select">
                         @foreach (var answer in question.Answers)
                         {
-                            <option value=@answer.AnswerBody>@answer.AnswerBody</option>
+                            <option readonly value=@answer.AnswerBody>@answer.AnswerBody</option>
                         }
                     </select>
                 </div>
