@@ -14,7 +14,7 @@ namespace MScApp.Pages.ApTest.Pages
         [BindProperty]
         public Test Test { get; set; }
         public AppUser AppUser { get; set; }
-        public List<AppUser> AppUsers { get; set; }
+        public List<AppUser> Applicants { get; set; }
 
         public string Message { get; set; }
 
@@ -27,7 +27,7 @@ namespace MScApp.Pages.ApTest.Pages
         public void OnGet(int? TestID)
         {
             Test = apTestData.GetTestByID(TestID);
-            AppUsers = apTestData.GetAllAppUsers();
+            Applicants = apTestData.GetAllAppUsers();
         }
 
         public IActionResult OnPost(string[] userCheckboxes)

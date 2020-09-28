@@ -22,7 +22,7 @@
 
 <form method="post">
     <input type="hidden" asp-for="@Model.Test.ID" />
-    <table asp-for="@Model.Test.AppUserTests" id="testUsers" class="table table-hover">
+    <table asp-for="@Model.Test.AppUserTests" id="testApps" class="table table-hover">
 
         <thead>
             <tr>
@@ -32,22 +32,23 @@
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < Model.AppUsers.Count; i++)
+            @for (int i = 0; i < Model.Applicants.Count; i++)
             {
-                <tr class="@(@Model.IsUserAssignedToTest(Model.AppUsers[i].Id, Model.Test.ID) ? "selected" : "")">
-                    <td>
-                        <label>
-                            @Model.AppUsers[i].Id
-                            <input type="checkbox" class="userCheckbox" id="userCheckbox" name="userCheckboxes" value="@Model.AppUsers[i].Id" checked="@Model.IsUserAssignedToTest(Model.AppUsers[i].Id, Model.Test.ID)" />
-                        </label>
-                    </td>
-                    <td>
-
-                        @Model.AppUsers[i].FirstName @Model.AppUsers[i].LastName
-
-                    </td>
-                    <td>@Model.AppUsers[i].Email</td>
-                </tr>
+                if (!Model.Applicants[i].IsAdmin)
+                {
+                    <tr class="@(@Model.IsUserAssignedToTest(Model.Applicants[i].Id, Model.Test.ID) ? "selected" : "")">
+                        <td>
+                            <label>
+                                @Model.Applicants[i].Id
+                                <input type="checkbox" class="userCheckbox" id="appsCheckbox" name="userCheckboxes" value="@Model.Applicants[i].Id" checked="@Model.IsUserAssignedToTest(Model.Applicants[i].Id, Model.Test.ID)" />
+                            </label>
+                        </td>
+                        <td>
+                            @Model.Applicants[i].FirstName @Model.Applicants[i].LastName
+                        </td>
+                        <td>@Model.Applicants[i].Email</td>
+                    </tr>
+                }
             }
         </tbody>
     </table>
@@ -58,13 +59,13 @@
 <script>
     $(document)
         .ready(function () {
-            $('#testUsers tbody').on('click', 'tr', function () {
+            $('#testApps tbody').on('click', 'tr', function () {
                 if (!$(this).hasClass('selected')) {
-                    $(this).find("#userCheckbox").prop("checked", true);
+                    $(this).find("#appsCheckbox").prop("checked", true);
                     $(this).addClass('selected');
                 }
                 else {
-                    $(this).find("#userCheckbox").prop("checked", false);
+                    $(this).find("#appsCheckbox").prop("checked", false);
                     $(this).removeClass('selected');
                 }
             });
