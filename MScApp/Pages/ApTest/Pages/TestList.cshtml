@@ -3,14 +3,21 @@
 @{
     ViewData["Title"] = "Test List";
 }
+<jumbotron class="text-center">
+    <h1 class="display-4">Tests</h1>
+    <hr class="my-4">
+    <div>
+        <a asp-page="./TestEdit" class="btn btn-lg btn-success"> Add New </a>
+    </div>
+</jumbotron>
 
 @foreach (var test in Model.Tests)
 {
     if (!test.IsDeleted)
     {
         <div class="card m-3">
-            <div class="card-header">
-                <div class="card-title">Test Name : @test.TestName</div>
+            <div class="card-header text-white bg-danger">
+                <h3 class="card-title">Test Name : @test.TestName</h3>
             </div>
             <div class="card-body">
                 <p>@test.Date.ToString("dddd, dd MMMM yyyy")</p>
@@ -25,7 +32,7 @@
                 <a class="btn btn-lg" asp-page="./TestEdit" asp-route-TestID="@test.ID">
                     <i class="material-icons md-36">create</i>
                 </a>
-                <a class="btn btn-lg" asp-page="./TestUserManage" asp-route-TestID="@test.ID" data-toggle="tooltip" data-placement="bottom" title="Manage Applicants">
+                <a class="btn btn-lg" asp-page="./TestApplicantManage" asp-route-TestID="@test.ID" data-toggle="tooltip" data-placement="bottom" title="Manage Applicants">
                     <i class="material-icons md-36">face</i>
                 </a>
                 <a class="btn btn-lg" asp-page="./TestDelete" asp-route-TestID="@test.ID">
@@ -35,5 +42,3 @@
         </div>
     }
 }
-
-<a asp-page="./TestEdit" class="btn btn-primary"> Add New </a>
