@@ -152,3 +152,7 @@ tr.selected {
 table.dataTable tbody tr.selected {
     background-color: #ffffff;
 }
+
+.dropdown-item:active {
+    background-color: palegreen;
+}
