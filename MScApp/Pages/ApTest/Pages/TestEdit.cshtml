@@ -72,7 +72,7 @@
             {
                 if (!Model.Questions[i].IsDeleted)
                 {
-                    <tr>
+                    <tr class="@(@Model.IsQuestionOnTest(Model.Questions[i].ID, Model.Test.ID) ? "selected" : "")">
                         <td>
                             <label>
                                 @Model.Questions[i].ID
