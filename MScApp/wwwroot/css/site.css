@@ -110,7 +110,7 @@ tr.selected {
     border-width: 0px;
 }
 
-.userCheckbox {
+.userCheckbox, .questionCheckbox {
     display: none;
 }
 
