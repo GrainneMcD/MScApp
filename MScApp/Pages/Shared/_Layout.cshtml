@@ -1,9 +1,15 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@using MScApp.Core
+@using Microsoft.AspNetCore.Authorization
+@inject SignInManager<AppUser> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MScApp</title>
+
 
     <!--Bootstrap CSS-->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -29,24 +35,27 @@
                     <img class="navImage" src="~/img/logo.png" loading="lazy">
                 </a>
                 <ul class="navList">
+                    @if (SignInManager.IsSignedIn(User))
+                    {
 
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li class="navLi">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Questions/Pages/List">Questions</a>
-                        </li>
-                        <li class="navLi">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/TestList">Tests</a>
-                        </li>
-                        <li class="navLi">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/ApTestResults">Test Results</a>
-                        </li>
-                    }
-                    else
-                    {
-                        <li class="navLi">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/ApTestHome">Aptitude Test</a>
-                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="navLi">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Questions/Pages/List">Questions</a>
+                            </li>
+                            <li class="navLi">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/TestList">Tests</a>
+                            </li>
+                            <li class="navLi">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/ApTestResults">Test Results</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="navLi">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/ApTest/Pages/ApTestHome">Aptitude Test</a>
+                            </li>
+                        }
                     }
                 </ul>
                 <partial name="_LoginPartial" />
