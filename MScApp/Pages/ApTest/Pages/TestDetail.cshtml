@@ -22,12 +22,19 @@
     <div class="card-body pb-4">
         <p><strong>Date : </strong>@Model.Test.Date.ToString("dddd, dd MMMM yyyy")</p>
         <p><strong>Time : </strong>@Model.Test.Time.ToString("hh: mm tt")</p>
-        <p><strong>Applicants Assigned : </strong> @Model.ApplicantsOnTest</p>
+        <p><strong>Applicants Assigned : </strong> @Model.ApplicantsOnTestCount</p>
 
-        <a class="btn btn-success" asp-page="./TestApplicantManage" asp-route-TestID="@Model.Test.ID" data-toggle="tooltip" data-placement="bottom" title="Manage Applicants">
-            Manage Applicants
-        </a>
-        <hr class="my-4">
+        <button class="nav-link btn btn-secondary dropdown-toggle mb-3" id="dropdownMenuButton" data-toggle="dropdown">Test Options</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="nav-link text-dark dropdown-item" asp-page="./TestApplicantManage" asp-route-TestID="@Model.Test.ID" data-toggle="tooltip" data-placement="bottom" title="Manage Applicants">
+                Manage Applicants
+            </a>
+            <form class="float-right" method="post">
+                <button type="submit" class="nav-link text-dark dropdown-item">Export Test Reminder</button>
+            </form>
+        </div>
+
+        <hr class="mt-5 mb-4">
         <div>
             <table>
                 <thead class="border-bottom border-danger pb-2">

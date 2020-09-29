@@ -5,6 +5,7 @@ using MScApp.Core;
 using MScApp.Pages.ApTest.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace MScApp.Pages.ApTest.Pages
 {
@@ -19,7 +20,8 @@ namespace MScApp.Pages.ApTest.Pages
         public List<QuestionTest> QuestionTests { get; set; }
         public QuestionTest QuestionTest { get; set; }
         public List<Question> QuestionsInTest { get; set; }
-        public int ApplicantsOnTest { get; set; }
+        public int ApplicantsOnTestCount { get; set; }
+        public List<AppUserTest> ApplicantsOnTest { get; set; }
         [TempData]
         public string Message { get; set; }
 
@@ -46,8 +48,39 @@ namespace MScApp.Pages.ApTest.Pages
             foreach (var q in QuestionsInTest)
             { q.QuestionBody = q.QuestionBody.Replace("\n", "<br>"); }
 
-            ApplicantsOnTest = apTestData.GetApplicantsAssignedToTestByID(TestID).Count();
+            ApplicantsOnTest = apTestData.GetApplicantsAssignedToTestByID(TestID);
+            ApplicantsOnTestCount = ApplicantsOnTest.Count();
 
+        }
+
+        public FileContentResult OnPost(int TestID)
+        {
+            ApplicantsOnTest = apTestData.GetApplicantsAssignedToTestByID(TestID);
+            return ExportTestReminderToCSV(ApplicantsOnTest);
+        }
+
+        public FileContentResult ExportTestReminderToCSV(List<AppUserTest> ApplicantsOnTest)
+        {
+
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append("ApplicantID,FirstName,LastName,Email,TestName,TestDay,TestDate,TestTime,\n");
+
+            foreach (var AppTest in ApplicantsOnTest)
+            {
+                AppTest.AppUser = apTestData.GetAppUserByID(AppTest.AppUserID);
+                AppTest.Test = apTestData.GetTestByID(AppTest.TestID);
+
+                stringBuilder.Append(AppTest.AppUserID + ",");
+                stringBuilder.Append(AppTest.AppUser.FirstName + ",");
+                stringBuilder.Append(AppTest.AppUser.LastName + ",");
+                stringBuilder.Append(AppTest.AppUser.Email + ",");
+                stringBuilder.Append(AppTest.Test.TestName + ",");
+                stringBuilder.Append(AppTest.Test.Date.ToString("dddd") + ",");
+                stringBuilder.Append(AppTest.Test.Date.ToString("dd MMMM yyyy") + ",");
+                stringBuilder.Append(AppTest.Test.Time.ToString("hh: mm tt") + "\n");
+            }
+
+            return File(Encoding.UTF8.GetBytes(stringBuilder.ToString()), "text/csv", "TestReminder.csv");
         }
     }
 }
