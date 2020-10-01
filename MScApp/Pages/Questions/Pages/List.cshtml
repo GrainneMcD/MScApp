@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <a class="btn btn-lg" asp-page="./Detail" asp-route-QuestionID="@question.ID"data-toggle="tooltip" data-placement="bottom" title="Question Details">
+                <a class="btn btn-lg" asp-page="./Detail" asp-route-QuestionID="@question.ID" data-toggle="tooltip" data-placement="bottom" title="Question Details">
                     <i class="material-icons md-36">zoom_in</i>
                 </a>
                 <a class="btn btn-lg" asp-page="./Edit" asp-route-QuestionID="@question.ID" data-toggle="tooltip" data-placement="bottom" title="Edit Question">
@@ -60,6 +60,7 @@
                 </a>
             </div>
         </div>
+        questionNumber++;
     }
-    questionNumber++;
+
 }
