@@ -102,6 +102,17 @@ tr.selected {
     float: left;
 }
 
+    .navLi:hover {
+        background-color: rgba(190, 189, 189, 0.15);
+        border-radius: 5px;
+    }
+
+    .navLi:active {
+        display: inline;
+        float: left;
+        font-weight: bold;
+    }
+
 .navImage {
     float: left;
 }
