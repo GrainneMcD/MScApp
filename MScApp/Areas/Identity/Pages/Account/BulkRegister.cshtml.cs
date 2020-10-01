@@ -44,7 +44,6 @@ namespace MScApp.Areas.Identity.Pages.Account
             List<UserUploadCargo> records;
             List<AppUser> usersToAdd = new List<AppUser>();
             var file = UserFile;
-            bool claimsAdded;
 
             if (file is null)
             {
@@ -100,7 +99,6 @@ namespace MScApp.Areas.Identity.Pages.Account
                     new System.Security.Claims.Claim("FullName",
                     user.FirstName + " " + user.LastName));
                 }
-                claimsAdded = true;
                 TempData["Message"] = "All applicants have been successfully created";
             }
 
