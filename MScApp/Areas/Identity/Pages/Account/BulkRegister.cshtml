@@ -10,9 +10,19 @@
             </button>
         </div>
     }
+
+    if (Model.ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Model.ErrorMessage
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 }
 <div class="jumbotron">
-    <form enctype="multipart/form-data" method="post">
+    <form method="post" enctype="multipart/form-data">
         <div>
             <h1 class="display-4">Bulk User Upload</h1>
             <p class="lead">
@@ -22,11 +32,11 @@
                 ID, Email, Password, PhoneNumber, FirstName, LastName, Address, City, PostCode, Country
             </p>
             <div class="pb-2">
-                <input asp-for="@Model.UserFile" type="file">
+                <input required asp-for="@Model.UserFile" type="file">
                 <span asp-validation-for="@Model.UserFile"></span>
             </div>
         </div>
-        <input asp-page-handler="Upload" class="btn btn-success" type="submit" value="Upload" />
+        <input class="btn btn-success" type="submit" value="Upload" />
     </form>
 </div>
 
@@ -45,36 +55,39 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.AppUsers)
+            @if (!Model.AppUsers.Equals(null))
             {
-                if (!user.IsDeleted)
+                @foreach (var user in Model.AppUsers)
                 {
-                    <tr>
-                        <td>@user.Id</td>
-                        <td>@user.FirstName</td>
-                        <td>@user.LastName</td>
-                        <td>@user.Email</td>
-                        <td>
-                            @if (user.IsAdmin)
-                            {
-                                <p>Admin</p>
-                            }
-                            else
-                            {
-                                <p>Applicant</p>
-                            }
-                        </td>
-                        <td class="text-center">
-                            <a class="btn btn-lg" asp-page="./AppUserDetail" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Edit AppUser">
-                                <i class="material-icons md-36">zoom_in</i>
-                            </a>
-                        </td>
-                        <td class="text-center">
-                            <a class="btn btn-lg" asp-page="./AppUserDelete" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Delete AppUser">
-                                <i class="material-icons md-36">delete</i>
-                            </a>
-                        </td>
-                    </tr>
+                    if (!user.IsDeleted)
+                    {
+                        <tr>
+                            <td>@user.Id</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.Email</td>
+                            <td>
+                                @if (user.IsAdmin)
+                                {
+                                    <p>Admin</p>
+                                }
+                                else
+                                {
+                                    <p>Applicant</p>
+                                }
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-lg" asp-page="./AppUserDetail" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Edit AppUser">
+                                    <i class="material-icons md-36">zoom_in</i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-lg" asp-page="./AppUserDelete" asp-route-UserID="@user.Id" data-toggle="tooltip" data-placement="bottom" title="Delete AppUser">
+                                    <i class="material-icons md-36">delete</i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
                 }
             }
         </tbody>
